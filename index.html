@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<base href="index.html">
+		<meta charset="UTF-8">
+		<link rel="icon" href="image/favicon.ico" />
+		<title>Doc surround</title>
+	</head>
+	<body>
+		<header>
+			<h1>Documentation for the plugin Surround Vim</h1> 
+			<nav>
+				<ul>
+					<a href="index.html"> Home </a>
+				</ul>
+			</nav>
+			<h2><sub>if you haven't installed it yet, come <a href="https://github.com/tpope/vim-surround" target="_blank">here</a></sub></h2>
+			<header>
+				<main>
+				<section>
+					<article id="adding surrounding">
+
+						<h2>Adding surrounding</h2>
+
+						<p>With this plugin you can surround words or sentences with a simple command in vim</p>
+
+						<p>For example we have a sentence : <code>Hello world</code></p> 
+
+						<p>If i want to surround it with <strong>double quotation</strong> marks, i start by placing my cursor on the word and i will use the <code>yss"</code> command</p>
+
+						<p><code>yss" = "Hello world"</code></p>
+
+						<p>And i can also use the command to add <strong>brackets, parenthesis</strong> and <strong>many others</strong>, using <strong>yss</strong> and then the symbols with which i want to surround my sentences</p>
+
+						<p><code>yss] = [Hello world]</code></p>
+
+						<p><code>yss) = (Hello world)</code></p>
+
+						<p><strong>Tips</strong> for <strong>(parenthesis),[brackets]</strong> and <strong>{braces}</strong> if we use the characters that open these signs we will have an extra space between the word and its surroundings, example :</p> 
+
+						<p>    <strong>With space</strong> </p>
+
+						<p><code>yss( = ( Hello world )</code></p>  
+						<p><code>yss[ = [ Hello world ]</code></p>
+
+						<p>    <strong>Without space</strong></p>
+
+						<p><code>yss) = (Hello world)</code></p>    
+						<p><code>yss] = [Hello world]</code></p>
+
+						<p>Now you can surround an entire sentence with the desired character, but you can't surround just one or two words</p>
+
+						<p>If you want to surround <strong>only</strong> one word you can use <code>ysw)</code> to surround the word with <strong>parenthesis</strong> <strong>from the cursor to the end of the word</strong>, some examples :</p>
+
+						<img src="https://i.imgur.com/3OmQoRk.png" alt="example cursor"> = my cursor
+
+						<p><code>ysw)</code> = <img src="https://i.imgur.com/maYofFG.png" alt="H(ello) world"</p>  
+						<p><code>ysw)</code> = <img src="https://i.imgur.com/v9XoAln.png" alt="Hello w(orld)"</p>   
+
+						<p>If i want to surround the complete word then i use <code>ysiw</code> ( is = entire word) with this command even if my cursor is in the center of the word, <strong>the whole word</strong> will be surrounded</p>
+
+						<p><code>ysiw'</code> = <img src="https://i.imgur.com/Erdgo2g.png" alt="'Hellow' world"> </p>    
+						<p><code>ysiw-</code> = <img src="https://i.imgur.com/RUBsMNg.png" alt="Hello -world-"></p>    
+
+						<p>I can also surround many words <strong>by replacing</strong> the "<strong>x</strong>" in this command <code>ysXaw</code> with a <strong>number</strong></p>
+
+						<p><code>ys2aw) = (Hello at) world</code></p>  
+						<p><code>ys2aw} = Hello {at world}</code></p>  
+						<p><code>ys3aw[ = [ Hello at world ]</code></p>  
+
+						<p>And if I want to surround my words with HTML tags it's possible, they will even close themselves, for example:</p>  
+						<pre>
+							<code>
+ysiw&lt;p&gt; = &lt;p&gt;Hello&lt;/p&gt; world</p>  
+ys2aw&lt;h1&gt; = &lt;h1&gt;Hello world&lt;/h1&gt; 
+							</code>
+						</pre>
+						<p>Let's finish by doing a v ( to put it in visual mode on vim) then selecting all the lines we want to surround followed by an S and the desired entourage, example:</p>  
+						<pre>
+							<code>
+v S&lt;p&gt; = &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis augue metus&lt;/p&gt; 
+							</code>
+						</pre>
+						<p>It also allows you to surround a block of text even with spaced lines</p>
+						<pre>
+							<code>
+v S&lt;em&gt; = &lt;em&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis augue metus, 
+pellentesque non volutpat vitae, consequat ut purus
+
+Vivamus quis dui sodales lacus hendrerit volutpat.
+Phasellus ac sagittis arcu.&lt;/em&gt;
+							</code>
+						</pre>
+						<p>And to include a text in a tag</p>
+						<pre>
+							<code>
+VS&lt;em&gt; = &lt;em&gt; 
+			 Hello world
+	 &lt;/em&gt;
+							</code>
+						</pre>
+						<p>( Most vim commands work with surround commands, for example using a <code>$</code> or <code>0</code> to surround / replace / delete until the beginning or end of a sentence works with the surround plugin)</p>
+
+					</article>
+					<article id="replacing-surrounding">
+
+						<h2>Replacing surrounding</h2>
+						<p>Now we'll see how to replace the surroundings. To do this we will use <code>cs</code> (change surround) , <strong>followed by the character surrounding the word or sentence + followed by the character with which we want to replace</strong></p>  
+						<p>For example we have a sentence : <code>"Hello world"</code></p>
+						<p>If i want to replace surround of this sentence I will do <code>cs"(</code> to put parenthesis instead</p>
+						<p><code>cs"( = (Hello world)</code></p>
+						<p>I can also replace tags by using the <code>cst</code> command (change surrounded tag)</p>
+						<p>We have a sentence : <code><em>Hello world<em></code></p>
+						<pre>
+							<code>
+cst&lt;h1&gt; = &lt;h1&gt;Hello world&lt;h1&gt;
+							</code>
+						</pre>
+			<p>It is also possible to combine the two to replace a <strong>tag</strong> with a <strong>character</strong> and vice versa</p> 
+			<p><code>cst* = <strong>Hello world</strong></code></p>
+
+					</article>
+					<article id="deleting-surroundings">
+
+						<h2>Deleting Surroundings</h2>
+						<p>Finally we will remove surrounding to the word / sentence</p> 
+						<p>with the command <code>ds</code> <strong>delete surrounding</strong> from a word / sentence followed by the character to be deleted</p>
+						<p>For example we have a sentence : <code>"Hello world"</code></p>
+						<p><code>ds" = Hello world</code></p>
+						<p>You can also delete the tags of a word or a sentence with <code>dst</code></p>
+						<p>For example we have a sentence : <code><em>Hellow world</em></code></p>
+						<p><code>dst = Hello world</code></p>
+						<p>If you want  use <code>.</code> for repeat last command use <a
+				  href="https://github.com/tpope/vim-repeat" target="_blank">repeat.vim</a></p>
+
+					</article>
+				</section>
+				</main>
+				<footer>
+					<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+				</footer>
+	</body>
+</html>
